@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
@@ -27,3 +28,20 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+=======
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
+
+# IntelliJ
+.idea/
+*.iml
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db
+>>>>>>> 4743b328f9c4f5d0aab43f3d6445ac0665016ef4
