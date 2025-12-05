@@ -1,45 +1,55 @@
 package TeamMate;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
+/**
+ * Team
+ * Represents a team of participants.
+ */
 public class Team {
-    private final String id;
-    private final List<Participant> members = new ArrayList<>();
-    private final int maxSize;
 
-    public Team(String id, int maxSize) {
-        this.id = id;
-        this.maxSize = maxSize;
+    private final List<Participant> members;
+
+    public Team() {
+        this.members = new ArrayList<>();
     }
 
-    public synchronized boolean addMember(Participant p) {
-        if (members.size() >= maxSize) return false;
-        members.add(p);
-        return true;
+    /**
+     * Add a participant to the team.
+     */
+    public void addMember(Participant participant) {
+        members.add(participant);
     }
 
+    /**
+     * Get unmodifiable list of team members.
+     */
+    public List<Participant> getMembers() {
+        return Collections.unmodifiableList(members);
+    }
+
+    /**
+     * Get current team size.
+     */
     public int size() {
         return members.size();
     }
 
-    public List<Participant> getMembers() {
-        return List.copyOf(members);
-    }
+    /**
+     * Calculate average skill level of the team.
+     * Useful for debugging and evaluation.
+     */
+    public double getAverageSkill() {
+        if (members.isEmpty()) {
+            return 0;
+        }
 
-    public boolean isFull() {
-        return members.size() >= maxSize;
-    }
-
-    public String getId() { return id; }
-
-    public String summary() {
-        String interests = members.stream().map(Participant::getInterest).distinct().collect(Collectors.joining(","));
-        String roles = members.stream().map(Participant::getRole).distinct().collect(Collectors.joining(","));
-        String ptypes = members.stream().map(m -> m.getPersonality().name()).distinct().collect(Collectors.joining(","));
-        return String.format("Team %s: size=%d interests=[%s] roles=[%s] personalities=[%s]",
-                id, members.size(), interests, roles, ptypes);
+        int totalSkill = 0;
+        for (Participant p : members) {
+            totalSkill += p.getSkillLevel();
+        }
+        return (double) totalSkill / members.size();
     }
 }
-

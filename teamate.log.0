@@ -38,3 +38,9 @@ Nov 26, 2025 3:08:01 PM TeamMate.LoggerConfig setup
 INFO: Logger initialized. Log file: C:\Users\DELL\Desktop\Data science\Second Year AI&DS\Semester 3\OOD\TeamMate_University_Gaming_Club\teamate.log
 Nov 26, 2025 3:18:02 PM TeamMate.LoggerConfig setup
 INFO: Logger initialized. Log file: C:\Users\DELL\Desktop\Data science\Second Year AI&DS\Semester 3\OOD\TeamMate_University_Gaming_Club\teamate.log
+Jan 07, 2026 4:40:41 PM TeamMate.LoggerConfig setup
+INFO: Logger initialized. Log file: C:\Users\DELL\Desktop\Data science\Second Year AI&DS\Semester 3\OOD\TeamMate_University_Gaming_Club\teamate.log
+Jan 07, 2026 4:40:50 PM TeamMate.CSVHandler loadParticipants
+INFO: Total participants parsed: 30
+Jan 07, 2026 4:40:50 PM TeamMate.ConsoleMenu main
+INFO: Loaded participants: 30

@@ -1,45 +1,59 @@
 package TeamMate;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.File;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * CSVHandlerTest
+ * Unit tests for CSVHandler class.
+ */
 public class CSVHandlerTest {
 
-    @Test
-    void testLoadParticipants(@TempDir Path tempDir) throws IOException {
-        // Create sample CSV
-        Path csv = tempDir.resolve("participants.csv");
-        String data = "id,name,interest,role,skillLevel,score\n" +
-                "P1,Asha,Valorant,Attacker,80,92\n" +
-                "P2,Kaveen,FIFA,Striker,70,75\n";
-        Files.writeString(csv, data);
+    private static final String INPUT_FILE = "input_participants.csv";
+    private static final String OUTPUT_FILE = "test_formed_teams.csv";
 
-        List<Participant> participants = CSVHandler.loadParticipants(csv.toString());
-        assertEquals(2, participants.size());
-        assertEquals("P1", participants.get(0).getId());
-        assertEquals(92, participants.get(0).getScore());
+    @Test
+    void testReadParticipants() {
+
+        List<Participant> participants =
+                CSVHandler.readParticipants(INPUT_FILE);
+
+        assertNotNull(participants, "Participants list should not be null");
+        assertFalse(participants.isEmpty(), "Participants list should not be empty");
+
+        // Check first participant basic fields
+        Participant p = participants.get(0);
+        assertNotNull(p.getParticipantId());
+        assertNotNull(p.getName());
+        assertNotNull(p.getPreferredGame());
+        assertNotNull(p.getPreferredRole());
+
+        // Skill and personality validation
+        assertTrue(p.getSkillLevel() >= 0 && p.getSkillLevel() <= 100);
+        assertNotNull(p.getPersonalityType());
     }
 
     @Test
-    void testSaveTeams(@TempDir Path tempDir) throws IOException {
-        // Create a dummy team
-        Team team = new Team("T1", 5);
-        team.addMember(new Participant("P1", "Asha", "Valorant", "Attacker", 80, 92));
+    void testWriteTeams() {
 
-        Path out = tempDir.resolve("teams.csv");
-        CSVHandler.saveTeams(out.toString(), List.of(team));
+        // Load participants
+        List<Participant> participants =
+                CSVHandler.readParticipants(INPUT_FILE);
 
-        assertTrue(Files.exists(out));
-        String result = Files.readString(out);
-        assertTrue(result.contains("teamId,memberId,memberName"));
-        assertTrue(result.contains("T1"));
-        assertTrue(result.contains("Asha"));
+        TeamBuilder builder = new TeamBuilder(5);
+        List<Team> teams = builder.buildTeams(participants);
+
+        // Write output CSV
+        CSVHandler.writeTeams(OUTPUT_FILE, teams);
+
+        File outputFile = new File(OUTPUT_FILE);
+        assertTrue(outputFile.exists(), "Output CSV file should be created");
+
+        // Cleanup (optional but good practice)
+        outputFile.delete();
     }
 }

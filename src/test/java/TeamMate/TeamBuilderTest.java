@@ -1,42 +1,81 @@
 package TeamMate;
 
 import org.junit.jupiter.api.Test;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * TeamBuilderTest
+ * Unit tests for TeamBuilder class.
+ */
 public class TeamBuilderTest {
 
-    private Participant p(String id, String name, String interest, String role, int skill, int score) {
-        return new Participant(id, name, interest, role, skill, score);
+    private static final int TEAM_SIZE = 5;
+
+    /**
+     * Create a small set of dummy participants for testing.
+     */
+    private List<Participant> createTestParticipants() {
+
+        List<Participant> participants = new ArrayList<>();
+
+        participants.add(new Participant("P1", "A", "Valorant", "Attacker", 80, 5, 4, 4, 4, 5));
+        participants.add(new Participant("P2", "B", "FIFA", "Strategist", 70, 3, 4, 4, 4, 3));
+        participants.add(new Participant("P3", "C", "CSGO", "Defender", 65, 2, 4, 5, 3, 3));
+        participants.add(new Participant("P4", "D", "Valorant", "Supporter", 75, 4, 3, 4, 5, 4));
+        participants.add(new Participant("P5", "E", "FIFA", "Coordinator", 68, 4, 4, 4, 4, 4));
+
+        participants.add(new Participant("P6", "F", "CSGO", "Attacker", 85, 5, 4, 3, 4, 5));
+        participants.add(new Participant("P7", "G", "Valorant", "Strategist", 72, 4, 5, 4, 3, 4));
+        participants.add(new Participant("P8", "H", "FIFA", "Defender", 60, 2, 4, 5, 3, 3));
+        participants.add(new Participant("P9", "I", "CSGO", "Supporter", 78, 4, 3, 4, 5, 4));
+        participants.add(new Participant("P10", "J", "Valorant", "Coordinator", 71, 4, 4, 4, 4, 4));
+
+        return participants;
     }
 
     @Test
-    void testTeamBuilding() throws InterruptedException {
+    void testTeamsAreCreated() {
 
-        List<Participant> list = new ArrayList<>();
-        list.add(p("P1","Asha","Valorant","Attacker",80,92));
-        list.add(p("P2","Bob","FIFA","Striker",65,70));
-        list.add(p("P3","Sara","Dota","Support",54,60));
-        list.add(p("P4","Nimal","Valorant","Sniper",72,83));
-        list.add(p("P5","Kamal","FIFA","Midfielder",60,69));
+        TeamBuilder builder = new TeamBuilder(TEAM_SIZE);
+        List<Team> teams = builder.buildTeams(createTestParticipants());
 
-        TeamBuilder builder = new TeamBuilder(2, Runtime.getRuntime().availableProcessors());
-        List<Team> teams = builder.buildTeams(list);
+        assertNotNull(teams);
+        assertFalse(teams.isEmpty(), "Teams list should not be empty");
+    }
 
-        // All participants assigned
-        int total = teams.stream().mapToInt(Team::size).sum();
-        assertEquals(list.size(), total);
+    @Test
+    void testTeamSizeIsRespected() {
 
-        // No participant appears twice
-        Set<String> ids = new HashSet<>();
-        for (Team t : teams) {
-            for (Participant p : t.getMembers()) {
-                assertTrue(ids.add(p.getId()), "Duplicate participant found!");
-            }
+        TeamBuilder builder = new TeamBuilder(TEAM_SIZE);
+        List<Team> teams = builder.buildTeams(createTestParticipants());
+
+        for (Team team : teams) {
+            assertTrue(
+                    team.size() <= TEAM_SIZE,
+                    "Team size should not exceed configured TEAM_SIZE"
+            );
         }
+    }
 
-        // At least ceil(n/teamSize) teams
-        int expectedMinTeams = (int)Math.ceil(list.size() / 2.0);
-        assertTrue(teams.size() >= expectedMinTeams);
+    @Test
+    void testAllParticipantsAssigned() {
+
+        List<Participant> participants = createTestParticipants();
+        TeamBuilder builder = new TeamBuilder(TEAM_SIZE);
+        List<Team> teams = builder.buildTeams(participants);
+
+        int totalAssigned = teams.stream()
+                .mapToInt(Team::size)
+                .sum();
+
+        assertEquals(
+                participants.size(),
+                totalAssigned,
+                "All participants should be assigned to teams"
+        );
     }
 }

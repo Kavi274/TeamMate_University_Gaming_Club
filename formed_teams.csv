@@ -1,31 +1,101 @@
-teamId,memberId,memberName,interest,role,skill,score,personality
-T1,P29,Hashini Fernando,Badminton,Support,49,58,THINKER
-T1,P26,Kaveen Dias,Valorant,Sniper,77,82,BALANCED
-T1,P28,Malintha Bandara,FIFA,Striker,84,96,LEADER
-T1,P30,Shehan Liyanage,Basketball,Defender,62,71,BALANCED
-T1,P27,Nethmi Lakmali,Dota,Support,53,66,THINKER
-T1,P01,Asha Fernando,Valorant,Attacker,78,92,LEADER
-T2,P13,Imesha Ranasinghe,FIFA,Support,60,67,THINKER
-T2,P02,Nimal Perera,Dota,Strategist,65,83,BALANCED
-T2,P25,Sanduni Nimesha,Basketball,Support,63,75,BALANCED
-T2,P06,Sachith Weerasinghe,Valorant,Sniper,81,95,LEADER
-T2,P19,Binura Athukorala,Badminton,Defender,39,52,THINKER
-T2,P23,Vinura Madushanka,FIFA,Playmaker,41,57,THINKER
-T3,P15,Kavindu Amarasinghe,Basketball,Playmaker,71,90,LEADER
-T3,P14,Aviram Fernando,Badminton,Defender,43,55,THINKER
-T3,P08,Tharindu Mendis,FIFA,Striker,70,88,BALANCED
-T3,P17,Sahan Kumara,Dota,Support,50,62,THINKER
-T3,P16,Thilini Perera,Valorant,Sniper,69,76,BALANCED
-T3,P09,Dinithi Abeysekara,Badminton,Defender,52,64,THINKER
-T4,P24,Isuri Dilhari,Badminton,Striker,55,69,THINKER
-T4,P22,Yasara Perera,Dota,Strategist,64,94,LEADER
-T4,P20,Anjalee Gunawardena,Basketball,Support,58,73,BALANCED
-T4,P21,Chathura Senanayake,Valorant,Attacker,79,88,BALANCED
-T4,P03,Geetha Karunaratne,FIFA,Defender,55,68,THINKER
-T4,P05,Keshani Silva,Basketball,Playmaker,48,59,THINKER
-T5,P18,Ravindi Gamage,FIFA,Striker,82,93,LEADER
-T5,P04,Ravindu Jayasekara,Badminton,Support,72,74,BALANCED
-T5,P10,Kasun Rathnayake,Basketball,Center,66,79,BALANCED
-T5,P07,Harini Wickramasinghe,Dota,Support,62,72,BALANCED
-T5,P12,Sadev Gunasekara,Dota,Strategist,57,84,BALANCED
-T5,P11,Shehani Uthpala,Valorant,Attacker,74,91,LEADER
+TeamID,ParticipantID,Name,PreferredGame,Role,PersonalityType,SkillLevel
+1,P016,Leo,Valorant,Attacker,BALANCED,88
+1,P046,Lucas,Valorant,Attacker,BALANCED,87
+1,P066,Leo,CSGO,Attacker,BALANCED,86
+1,P050,Ali,FIFA,Coordinator,BALANCED,70
+1,P057,Sita,CSGO,Strategist,BALANCED,70
+2,P031,Adam,Valorant,Attacker,BALANCED,86
+2,P086,Oscar,FIFA,Attacker,BALANCED,85
+2,P001,Alex,Valorant,Attacker,BALANCED,85
+2,P090,Mohit,CSGO,Coordinator,BALANCED,70
+2,P042,Nina,CSGO,Strategist,BALANCED,69
+3,P056,Oliver,FIFA,Attacker,BALANCED,85
+3,P076,Kevin,Valorant,Attacker,BALANCED,84
+3,P096,Victor,CSGO,Attacker,BALANCED,84
+3,P005,Ravi,FIFA,Coordinator,BALANCED,70
+3,P022,Pooja,Valorant,Strategist,BALANCED,70
+4,P036,James,CSGO,Attacker,BALANCED,84
+4,P091,Alan,Valorant,Attacker,BALANCED,83
+4,P021,Chris,CSGO,Attacker,BALANCED,83
+4,P070,Hassan,Valorant,Coordinator,BALANCED,70
+4,P068,Mark,FIFA,Defender,THINKER,66
+5,P061,Ryan,Valorant,Attacker,BALANCED,83
+5,P006,Sara,CSGO,Attacker,BALANCED,82
+5,P071,Jason,FIFA,Attacker,BALANCED,82
+5,P080,Usman,FIFA,Coordinator,BALANCED,70
+5,P012,Priya,CSGO,Strategist,BALANCED,69
+6,P041,Raj,FIFA,Attacker,BALANCED,82
+6,P011,Arun,FIFA,Attacker,BALANCED,81
+6,P051,Kiran,CSGO,Attacker,BALANCED,81
+6,P030,Noah,CSGO,Coordinator,BALANCED,69
+6,P007,John,Valorant,Strategist,BALANCED,68
+7,P081,Brandon,CSGO,Attacker,BALANCED,81
+7,P026,Ajay,FIFA,Attacker,BALANCED,80
+7,P089,Sofia,FIFA,Supporter,BALANCED,79
+7,P010,Meera,Valorant,Coordinator,BALANCED,77
+7,P099,Harini,CSGO,Supporter,BALANCED,77
+8,P019,Neha,Valorant,Supporter,BALANCED,79
+8,P069,Sanjana,CSGO,Supporter,BALANCED,79
+8,P049,Riya,Valorant,Supporter,BALANCED,79
+8,P060,Yusuf,CSGO,Coordinator,BALANCED,69
+8,P038,Paul,FIFA,Defender,THINKER,65
+9,P094,Deepa,Valorant,Supporter,BALANCED,78
+9,P059,Pallavi,FIFA,Supporter,BALANCED,78
+9,P004,Amal,Valorant,Supporter,BALANCED,78
+9,P020,Rohan,FIFA,Coordinator,BALANCED,68
+9,P027,Lina,CSGO,Strategist,BALANCED,67
+10,P034,Maya,Valorant,Supporter,BALANCED,78
+10,P079,Anika,Valorant,Supporter,BALANCED,78
+10,P084,Minal,CSGO,Supporter,BALANCED,77
+10,P023,Mike,FIFA,Defender,THINKER,64
+10,P033,Harry,CSGO,Defender,THINKER,63
+11,P064,Shreya,Valorant,Supporter,BALANCED,77
+11,P039,Aarav,CSGO,Supporter,BALANCED,77
+11,P074,Rachel,FIFA,Supporter,BALANCED,76
+11,P063,Victor,CSGO,Defender,THINKER,64
+11,P018,Sam,CSGO,Defender,THINKER,62
+12,P024,Sonal,CSGO,Supporter,BALANCED,76
+12,P054,Anjali,CSGO,Supporter,BALANCED,76
+12,P044,Tina,FIFA,Supporter,BALANCED,75
+12,P098,Neil,FIFA,Defender,THINKER,64
+12,P058,Henry,Valorant,Defender,THINKER,62
+13,P017,Anu,FIFA,Strategist,BALANCED,75
+13,P047,Divya,FIFA,Strategist,BALANCED,74
+13,P067,Pinky,Valorant,Strategist,BALANCED,74
+13,P083,Stefan,FIFA,Defender,THINKER,64
+13,P028,Ben,Valorant,Defender,THINKER,61
+14,P029,Isha,FIFA,Supporter,BALANCED,74
+14,P008,Aisha,FIFA,Supporter,BALANCED,74
+14,P082,Irene,Valorant,Strategist,BALANCED,74
+14,P055,Rashid,Valorant,Coordinator,BALANCED,73
+14,P015,Imran,CSGO,Coordinator,BALANCED,71
+15,P097,Roshni,Valorant,Strategist,BALANCED,73
+15,P072,Aditi,CSGO,Strategist,BALANCED,73
+15,P037,Sneha,Valorant,Strategist,BALANCED,73
+15,P078,George,CSGO,Defender,THINKER,63
+15,P009,Daniel,CSGO,Defender,THINKER,60
+16,P085,Faizal,Valorant,Coordinator,BALANCED,73
+16,P014,Kavya,FIFA,Supporter,BALANCED,73
+16,P025,Zara,Valorant,Coordinator,BALANCED,72
+16,P092,Priya,FIFA,Strategist,BALANCED,72
+16,P075,Sameer,CSGO,Coordinator,BALANCED,71
+17,P052,Moni,Valorant,Strategist,BALANCED,72
+17,P065,Naveen,FIFA,Coordinator,BALANCED,72
+17,P077,Nandini,FIFA,Strategist,BALANCED,72
+17,P048,Ethan,CSGO,Defender,THINKER,66
+17,P013,Tom,Valorant,Defender,BALANCED,66
+18,P100,Zain,Valorant,Coordinator,BALANCED,72
+18,P040,Emily,Valorant,Coordinator,BALANCED,72
+18,P002,Nisha,FIFA,Strategist,BALANCED,72
+18,P003,Kevin,CSGO,Defender,BALANCED,65
+18,P053,Sean,FIFA,Defender,THINKER,65
+19,P095,Ameen,FIFA,Coordinator,BALANCED,71
+19,P087,Keerthi,CSGO,Strategist,BALANCED,71
+19,P062,Kajal,FIFA,Strategist,BALANCED,71
+19,P088,Tim,Valorant,Defender,THINKER,66
+19,P073,Peter,Valorant,Defender,THINKER,65
+20,P045,Farhan,CSGO,Coordinator,BALANCED,71
+20,P032,Ritu,FIFA,Strategist,BALANCED,71
+20,P035,Vikram,FIFA,Coordinator,BALANCED,70
+20,P093,Jon,CSGO,Defender,THINKER,65
+20,P043,Omar,Valorant,Defender,THINKER,64

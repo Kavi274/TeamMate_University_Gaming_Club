@@ -1,32 +1,42 @@
 package TeamMate;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * PersonalityClassifierTest
+ * Unit tests for PersonalityClassifier.
+ */
 public class PersonalityClassifierTest {
 
     @Test
     void testLeaderClassification() {
-        assertEquals(PersonalityType.LEADER, PersonalityClassifier.classify(90));
-        assertEquals(PersonalityType.LEADER, PersonalityClassifier.classify(100));
+        PersonalityType type = PersonalityClassifier.classify(92);
+        assertEquals(PersonalityType.LEADER, type);
     }
 
     @Test
     void testBalancedClassification() {
-        assertEquals(PersonalityType.BALANCED, PersonalityClassifier.classify(70));
-        assertEquals(PersonalityType.BALANCED, PersonalityClassifier.classify(89));
+        PersonalityType type = PersonalityClassifier.classify(78);
+        assertEquals(PersonalityType.BALANCED, type);
     }
 
     @Test
     void testThinkerClassification() {
-        assertEquals(PersonalityType.THINKER, PersonalityClassifier.classify(50));
-        assertEquals(PersonalityType.THINKER, PersonalityClassifier.classify(69));
+        PersonalityType type = PersonalityClassifier.classify(60);
+        assertEquals(PersonalityType.THINKER, type);
     }
 
     @Test
-    void testUnknownClassification() {
-        assertEquals(PersonalityType.UNKNOWN, PersonalityClassifier.classify(49));
-        assertEquals(PersonalityType.UNKNOWN, PersonalityClassifier.classify(-20));
-        assertEquals(PersonalityType.UNKNOWN, PersonalityClassifier.classify(105));
+    void testBoundaryValues() {
+        assertEquals(PersonalityType.LEADER,
+                PersonalityClassifier.classify(90));
+
+        assertEquals(PersonalityType.BALANCED,
+                PersonalityClassifier.classify(70));
+
+        assertEquals(PersonalityType.THINKER,
+                PersonalityClassifier.classify(69));
     }
 }

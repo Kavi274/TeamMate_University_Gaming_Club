@@ -1,97 +1,116 @@
 package TeamMate;
 
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
+/**
+ * TeamBuilder
+ * Responsible for forming balanced teams based on
+ * role diversity, personality mix, game variety, and skill balance.
+ */
 public class TeamBuilder {
-    private static final Logger LOGGER = Logger.getLogger(TeamBuilder.class.getName());
 
     private final int teamSize;
-    private final ExecutorService executor;
 
-    public TeamBuilder(int teamSize, int threads) {
-        if (teamSize <= 0) throw new IllegalArgumentException("teamSize must be > 0");
+    public TeamBuilder(int teamSize) {
         this.teamSize = teamSize;
-        this.executor = Executors.newFixedThreadPool(Math.max(1, threads));
-        LOGGER.info("TeamBuilder created with teamSize=" + teamSize + " threads=" + threads);
     }
 
-    public List<Team> buildTeams(List<Participant> participants) throws InterruptedException {
-        LOGGER.info("Starting team building for " + participants.size() + " participants.");
-        if (participants == null) return Collections.emptyList();
+    /**
+     * Build teams from a list of participants.
+     */
+    public List<Team> buildTeams(List<Participant> participants) {
+
+        // Defensive copy
         List<Participant> pool = new ArrayList<>(participants);
-        Collections.shuffle(pool, new Random(System.nanoTime()));
 
-        int numTeams = (int) Math.ceil((double) pool.size() / teamSize);
+        // Shuffle first to ensure fairness
+        Collections.shuffle(pool);
+
+        // Sort by skill descending (helps balance)
+        pool.sort((a, b) -> Integer.compare(b.getSkillLevel(), a.getSkillLevel()));
+
+        int numberOfTeams = pool.size() / teamSize;
         List<Team> teams = new ArrayList<>();
-        for (int i = 0; i < numTeams; i++) teams.add(new Team("T" + (i+1), teamSize));
 
+        for (int i = 0; i < numberOfTeams; i++) {
+            teams.add(new Team());
+        }
+
+        // Assign participants one by one
         for (Participant p : pool) {
-            Team best = null;
-            double bestScore = Double.NEGATIVE_INFINITY;
 
-            List<Callable<Map.Entry<Team, Double>>> tasks = new ArrayList<>();
-            for (Team t : teams) {
-                tasks.add(() -> Map.entry(t, scoreIfAdded(t, p)));
-            }
+            Team bestTeam = null;
 
-            List<Future<Map.Entry<Team, Double>>> futures;
-            try {
-                futures = executor.invokeAll(tasks);
-            } catch (InterruptedException e) {
-                LOGGER.log(Level.SEVERE, "Team scoring interrupted", e);
-                Thread.currentThread().interrupt();
-                throw e;
-            }
-
-            for (Future<Map.Entry<Team, Double>> f : futures) {
-                try {
-                    Map.Entry<Team, Double> entry = f.get();
-                    Team candidate = entry.getKey();
-                    double sc = entry.getValue();
-                    if (!candidate.isFull()) {
-                        if (sc > bestScore) { bestScore = sc; best = candidate; }
-                    }
-                } catch (ExecutionException ee) {
-                    LOGGER.log(Level.WARNING, "Error during scoring task: " + ee.getMessage(), ee);
+            for (Team team : teams) {
+                if (canAddToTeam(team, p)) {
+                    bestTeam = team;
+                    break;
                 }
             }
 
-            if (best == null) {
-                Team overflow = new Team("Overflow", teamSize);
-                overflow.addMember(p);
-                teams.add(overflow);
-                LOGGER.warning("All teams full - created overflow team and added: " + p.getId());
-            } else {
-                best.addMember(p);
-                LOGGER.fine("Assigned participant " + p.getId() + " to team " + best.getId() + " score=" + bestScore);
+            // Fallback: add to smallest team if no perfect match
+            if (bestTeam == null) {
+                bestTeam = teams.stream()
+                        .min(Comparator.comparingInt(t -> t.getMembers().size()))
+                        .orElseThrow();
             }
+
+            bestTeam.addMember(p);
         }
 
-        executor.shutdown();
-        executor.awaitTermination(5, TimeUnit.SECONDS);
-        LOGGER.info("Team building complete. Total teams: " + teams.size());
         return teams;
     }
 
-    // scoring unchanged, but log fine-grained info if needed
-    private double scoreIfAdded(Team t, Participant p) {
-        Set<String> interests = t.getMembers().stream().map(Participant::getInterest).collect(Collectors.toSet());
-        Set<String> roles = t.getMembers().stream().map(Participant::getRole).collect(Collectors.toSet());
-        Set<PersonalityType> ptypes = t.getMembers().stream().map(Participant::getPersonality).collect(Collectors.toSet());
+    /**
+     * Check whether a participant can be added to a team
+     * while respecting constraints.
+     */
+    private boolean canAddToTeam(Team team, Participant p) {
 
-        double score = 0.0;
-        if (!interests.contains(p.getInterest())) score += 3.0;
-        if (!roles.contains(p.getRole())) score += 2.0;
-        if (!ptypes.contains(p.getPersonality())) score += 2.0;
-        score -= interests.size() * 0.1;
-        double currentAvg = t.getMembers().stream().mapToInt(Participant::getSkillLevel).average().orElse(p.getSkillLevel());
-        double newAvg = (currentAvg * t.size() + p.getSkillLevel()) / Math.max(1, t.size()+1);
-        score -= Math.abs(newAvg - 50) / 100.0;
-        score += (teamSize - t.size()) * 0.01;
-        return score;
+        // Team size limit
+        if (team.getMembers().size() >= teamSize) {
+            return false;
+        }
+
+        // Game variety: max 2 per game
+        long sameGameCount = team.getMembers().stream()
+                .filter(m -> m.getPreferredGame().equalsIgnoreCase(p.getPreferredGame()))
+                .count();
+        if (sameGameCount >= 2) {
+            return false;
+        }
+
+        // Personality constraints
+        long leaders = team.getMembers().stream()
+                .filter(m -> m.getPersonalityType() == PersonalityType.LEADER)
+                .count();
+
+        long thinkers = team.getMembers().stream()
+                .filter(m -> m.getPersonalityType() == PersonalityType.THINKER)
+                .count();
+
+        if (p.getPersonalityType() == PersonalityType.LEADER && leaders >= 1) {
+            return false;
+        }
+
+        if (p.getPersonalityType() == PersonalityType.THINKER && thinkers >= 2) {
+            return false;
+        }
+
+        // Role diversity (soft constraint)
+        if (team.getMembers().size() >= 3) {
+            Set<String> roles = new HashSet<>();
+            for (Participant m : team.getMembers()) {
+                roles.add(m.getPreferredRole());
+            }
+            roles.add(p.getPreferredRole());
+
+            if (roles.size() < 3) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
+

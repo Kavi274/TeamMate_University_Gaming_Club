@@ -1,56 +1,97 @@
 package TeamMate;
 
-import java.util.Objects;
-
+/**
+ * Participant model class
+ * Represents a single participant in the University Gaming Club
+ * Data is loaded from participants_sample.csv
+ */
 public class Participant {
-    private final String id;
+
+    // Basic participant details
+    private final String participantId;
     private final String name;
-    private final String interest;     // e.g., Valorant, Dota
-    private final String role;         // e.g., Defender, Strategist
-    private final int skillLevel;      // 1-100 or 0-100
-    private final int score;           // sum of 5 personality Qs (0-100 expected)
-    private final PersonalityType personality;
+    private final String preferredGame;
+    private final String preferredRole;
+    private final int skillLevel;
 
-    public Participant(String id, String name, String interest, String role, int skillLevel, int score) {
-        this.id = id;
+    // Personality survey responses (1–5)
+    private final int q1;
+    private final int q2;
+    private final int q3;
+    private final int q4;
+    private final int q5;
+
+    // Derived attributes
+    private final int personalityScore;          // Scaled to 0–100
+    private final PersonalityType personalityType;
+
+    /**
+     * Constructor used when loading participants from CSV
+     */
+    public Participant(
+            String participantId,
+            String name,
+            String preferredGame,
+            String preferredRole,
+            int skillLevel,
+            int q1, int q2, int q3, int q4, int q5
+    ) {
+        this.participantId = participantId;
         this.name = name;
-        this.interest = interest;
-        this.role = role;
+        this.preferredGame = preferredGame;
+        this.preferredRole = preferredRole;
         this.skillLevel = clamp(skillLevel, 0, 100);
-        this.score = clamp(score, 0, 100);
-        this.personality = PersonalityClassifier.classify(this.score);
+
+        // Clamp survey responses to valid range
+        this.q1 = clamp(q1, 1, 5);
+        this.q2 = clamp(q2, 1, 5);
+        this.q3 = clamp(q3, 1, 5);
+        this.q4 = clamp(q4, 1, 5);
+        this.q5 = clamp(q5, 1, 5);
+
+        // Personality score calculation (as per coursework guideline)
+        int total = this.q1 + this.q2 + this.q3 + this.q4 + this.q5;
+        this.personalityScore = total * 4; // Scale to 0–100
+
+        // Personality classification handled by separate class
+        this.personalityType = PersonalityClassifier.classify(this.personalityScore);
     }
 
-    private static int clamp(int v, int lo, int hi) {
-        if (v < lo) return lo;
-        if (v > hi) return hi;
-        return v;
+    // --------------------
+    // Utility
+    // --------------------
+    private int clamp(int value, int min, int max) {
+        return Math.max(min, Math.min(max, value));
     }
 
-    // getters
-    public String getId() { return id; }
-    public String getName() { return name; }
-    public String getInterest() { return interest; }
-    public String getRole() { return role; }
-    public int getSkillLevel() { return skillLevel; }
-    public int getScore() { return score; }
-    public PersonalityType getPersonality() { return personality; }
-
-    @Override
-    public String toString() {
-        return String.format("%s(%s) [%s/%s/%d/%s]", name, id, interest, role, skillLevel, personality);
+    // --------------------
+    // Getters
+    // --------------------
+    public String getParticipantId() {
+        return participantId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Participant)) return false;
-        Participant p = (Participant) o;
-        return Objects.equals(id, p.id);
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public String getPreferredGame() {
+        return preferredGame;
+    }
+
+    public String getPreferredRole() {
+        return preferredRole;
+    }
+
+    public int getSkillLevel() {
+        return skillLevel;
+    }
+
+    public int getPersonalityScore() {
+        return personalityScore;
+    }
+
+    public PersonalityType getPersonalityType() {
+        return personalityType;
     }
 }
-
