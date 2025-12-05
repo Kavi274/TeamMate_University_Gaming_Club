@@ -1,0 +1,9 @@
+TeamMate\Main.class
+TeamMate\Participant.class
+TeamMate\Team.class
+TeamMate\PersonalityType.class
+TeamMate\PersonalityClassifier.class
+TeamMate\LoggerConfig.class
+TeamMate\TeamBuilder.class
+TeamMate\ConsoleMenu.class
+TeamMate\CSVHandler.class

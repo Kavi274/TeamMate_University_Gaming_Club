@@ -1,0 +1,33 @@
+id,name,interest,role,skillLevel,score
+P01,Asha Fernando,Valorant,Attacker,78,92
+P02,Nimal Perera,Dota,Strategist,65,83
+P03,Geetha Karunaratne,FIFA,Defender,55,68
+P04,Ravindu Jayasekara,Badminton,Support,72,74
+P05,Keshani Silva,Basketball,Playmaker,48,59
+P06,Sachith Weerasinghe,Valorant,Sniper,81,95
+P07,Harini Wickramasinghe,Dota,Support,62,72
+P08,Tharindu Mendis,FIFA,Striker,70,88
+P09,Dinithi Abeysekara,Badminton,Defender,52,64
+P10,Kasun Rathnayake,Basketball,Center,66,79
+
+P11,Shehani Uthpala,Valorant,Attacker,74,91
+P12,Sadev Gunasekara,Dota,Strategist,57,84
+P13,Imesha Ranasinghe,FIFA,Support,60,67
+P14,Aviram Fernando,Badminton,Defender,43,55
+P15,Kavindu Amarasinghe,Basketball,Playmaker,71,90
+P16,Thilini Perera,Valorant,Sniper,69,76
+P17,Sahan Kumara,Dota,Support,50,62
+P18,Ravindi Gamage,FIFA,Striker,82,93
+P19,Binura Athukorala,Badminton,Defender,39,52
+P20,Anjalee Gunawardena,Basketball,Support,58,73
+
+P21,Chathura Senanayake,Valorant,Attacker,79,88
+P22,Yasara Perera,Dota,Strategist,64,94
+P23,Vinura Madushanka,FIFA,Playmaker,41,57
+P24,Isuri Dilhari,Badminton,Striker,55,69
+P25,Sanduni Nimesha,Basketball,Support,63,75
+P26,Kaveen Dias,Valorant,Sniper,77,82
+P27,Nethmi Lakmali,Dota,Support,53,66
+P28,Malintha Bandara,FIFA,Striker,84,96
+P29,Hashini Fernando,Badminton,Support,49,58
+P30,Shehan Liyanage,Basketball,Defender,62,71

@@ -1,0 +1,40 @@
+Nov 25, 2025 1:43:26 AM TeamMate.LoggerConfig setup
+INFO: Logger initialized. Log file: C:\Users\DELL\Desktop\Data science\Second Year AI&DS\Semester 3\OOD\TeamMate_University_Gaming_Club\teamate.log
+Nov 25, 2025 1:43:37 AM TeamMate.LoggerConfig setup
+INFO: Logger initialized. Log file: C:\Users\DELL\Desktop\Data science\Second Year AI&DS\Semester 3\OOD\TeamMate_University_Gaming_Club\teamate.log
+Nov 25, 2025 1:44:05 AM TeamMate.CSVHandler loadParticipants
+INFO: Total participants parsed: 30
+Nov 25, 2025 1:44:05 AM TeamMate.ConsoleMenu main
+INFO: Loaded participants: 30
+Nov 25, 2025 1:44:31 AM TeamMate.CSVHandler loadParticipants
+INFO: Total participants parsed: 30
+Nov 25, 2025 1:45:01 AM TeamMate.CSVHandler loadParticipants
+INFO: Total participants parsed: 30
+Nov 25, 2025 1:45:48 AM TeamMate.ConsoleMenu main
+INFO: CSV path changed to: 0
+Nov 25, 2025 1:47:45 AM TeamMate.LoggerConfig setup
+INFO: Logger initialized. Log file: C:\Users\DELL\Desktop\Data science\Second Year AI&DS\Semester 3\OOD\TeamMate_University_Gaming_Club\teamate.log
+Nov 25, 2025 1:47:49 AM TeamMate.CSVHandler loadParticipants
+INFO: Total participants parsed: 30
+Nov 25, 2025 1:47:49 AM TeamMate.ConsoleMenu main
+INFO: Loaded participants: 30
+Nov 25, 2025 1:48:56 AM TeamMate.CSVHandler loadParticipants
+INFO: Total participants parsed: 30
+Nov 25, 2025 1:48:56 AM TeamMate.TeamBuilder <init>
+INFO: TeamBuilder created with teamSize=6 threads=8
+Nov 25, 2025 1:48:56 AM TeamMate.TeamBuilder buildTeams
+INFO: Starting team building for 30 participants.
+Nov 25, 2025 1:48:56 AM TeamMate.TeamBuilder buildTeams
+INFO: Team building complete. Total teams: 5
+Nov 25, 2025 1:48:56 AM TeamMate.ConsoleMenu main
+INFO: Teams built: 5
+Nov 25, 2025 1:50:03 AM TeamMate.CSVHandler saveTeams
+INFO: Teams successfully written to: C:\Users\DELL\Desktop\Data science\Second Year AI&DS\Semester 3\OOD\TeamMate_University_Gaming_Club\formed_teams.csv
+Nov 25, 2025 1:50:03 AM TeamMate.ConsoleMenu main
+INFO: Saved teams to: C:\Users\DELL\Desktop\Data science\Second Year AI&DS\Semester 3\OOD\TeamMate_University_Gaming_Club\formed_teams.csv
+Nov 25, 2025 1:54:29 AM TeamMate.ConsoleMenu main
+INFO: User exited via console menu.
+Nov 26, 2025 3:08:01 PM TeamMate.LoggerConfig setup
+INFO: Logger initialized. Log file: C:\Users\DELL\Desktop\Data science\Second Year AI&DS\Semester 3\OOD\TeamMate_University_Gaming_Club\teamate.log
+Nov 26, 2025 3:18:02 PM TeamMate.LoggerConfig setup
+INFO: Logger initialized. Log file: C:\Users\DELL\Desktop\Data science\Second Year AI&DS\Semester 3\OOD\TeamMate_University_Gaming_Club\teamate.log
