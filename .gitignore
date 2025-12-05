@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 ###########################
 ### IntelliJ IDEA ###
@@ -45,12 +46,16 @@ Thumbs.db
 ###########################
 ### Maven build ###
 ###########################
+=======
+# Maven build
+>>>>>>> origin/main
 target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 release.properties
 
+<<<<<<< HEAD
 ###########################
 ### Logs ###
 ###########################
@@ -59,4 +64,16 @@ release.properties
 ###########################
 ### Test outputs ###
 ###########################
+=======
+# IntelliJ / IDE
+.idea/
+*.iml
+
+# Logs / OS files
+*.log
+.DS_Store
+Thumbs.db
+
+# Test outputs / local
+>>>>>>> origin/main
 junit-*.xml
