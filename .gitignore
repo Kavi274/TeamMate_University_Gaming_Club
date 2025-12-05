@@ -1,15 +1,18 @@
-# Maven
+# Maven build
 target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 release.properties
 
-# IntelliJ
+# IntelliJ / IDE
 .idea/
 *.iml
 
-# Logs and OS files
+# Logs / OS files
 *.log
 .DS_Store
 Thumbs.db
+
+# Test outputs / local
+junit-*.xml
