@@ -1,10 +1,16 @@
-<<<<<<< HEAD
+
+###########################
 ### IntelliJ IDEA ###
+###########################
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+.idea/
+*.iml
 
+###########################
 ### Eclipse ###
+###########################
 .apt_generated
 .classpath
 .factorypath
@@ -16,32 +22,41 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
+###########################
 ### NetBeans ###
+###########################
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
 
+###########################
 ### VS Code ###
+###########################
 .vscode/
 
+###########################
 ### Mac OS ###
+###########################
 .DS_Store
-=======
-# Maven
+Thumbs.db
+
+###########################
+### Maven build ###
+###########################
 target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 release.properties
 
-# IntelliJ
-.idea/
-*.iml
-
-# Logs and OS files
+###########################
+### Logs ###
+###########################
 *.log
-.DS_Store
-Thumbs.db
->>>>>>> 4743b328f9c4f5d0aab43f3d6445ac0665016ef4
+
+###########################
+### Test outputs ###
+###########################
+junit-*.xml
