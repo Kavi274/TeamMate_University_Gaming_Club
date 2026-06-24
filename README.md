@@ -4,7 +4,7 @@
 TeamMate is a Java-based Command Line Interface (CLI) application developed to automatically form **balanced teams** for a University Gaming Club.  
 The system uses participant **skills, roles, game preferences, and personality traits** to generate fair and diverse teams based on defined constraints.
 
-This project was developed as part of the **CM2601 Coursework** and demonstrates object-oriented design, constraint-based logic, testing, logging, and version control usage.
+
 
 ---
 
